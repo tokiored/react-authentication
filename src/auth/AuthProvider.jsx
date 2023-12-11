@@ -1,5 +1,5 @@
-import { createContext, useState } from 'react'
-import { fakeLogin } from '../api'
+import { useEffect, createContext, useState } from 'react'
+import { login } from '../api'
 import { useLocation, useNavigate } from 'react-router-dom'
 
 const AuthContext = createContext()
@@ -9,18 +9,28 @@ const AuthProvider = ({ children }) => {
   const navigate = useNavigate()
   const location = useLocation()
 
-  const handleLogin = async () => {
-    const token = await fakeLogin()
-    setToken(token)
-    /*
-     * Handle smart redirect
-     * About page added to test behaviour
-     */
+  useEffect(() => {
+    // TODO: Get token from localStorgage
+    // TODO: Validate token with the server
+    // const token = localStorage.getItem('token')
+    // setToken(token)
+  }, [])
+
+  const handleLogin = async (creds) => {
+    console.log('handlling Login...')
+    const data = await login(creds)
+    // localStorage.setItem('loggedin', true)
+    setToken(data.token)
+
+    // Handle smart redirect
+    // About page added to test behaviour
     const redirect = location.state?.from?.pathname || '/dashboard'
     navigate(redirect)
   }
 
   const handleLogout = () => {
+    // TODO: Clear local storage data
+    // localStorage.removeItem('token');
     setToken(null)
   }
 
