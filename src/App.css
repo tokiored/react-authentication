@@ -150,7 +150,7 @@ p {
   display: flex;
   flex-direction: column;
   width: 100%;
-  max-width: 500px;    
+  max-width: 400px;    
 }
 
 .login-form > input {
@@ -182,12 +182,13 @@ p {
 button {
   background-color: #FF8C38;
   border: none;
-  border-radius: 6px;
-  height: 55px;
   margin-top: 22px;
   color: white;
   font-family: "Inter", sans-serif;
   font-size: 1rem;
+  height: 40px;
+  padding: 1px 22px;
+  border-radius: 20px;
 }
 button:hover{
   background-color: #e0782d;
@@ -197,10 +198,6 @@ button:hover{
   color: red;
 }
 
-.logout-button {
-  height: 40px;
-  padding: 1px 22px;
-}
 
 .not-found-container .link-button {
   width: 100%;
