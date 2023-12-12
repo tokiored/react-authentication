@@ -23,7 +23,7 @@ const getUsers = async () => {
     // `import users from ./users.json` would be
     // the correct way to use data fom a .json file
     // this solution is for diginius test criteria  *only*
-    const res = await fetch('/public/users.json')
+    const res = await fetch('/users.json')
     const data = await res.json()
     return data
   } catch (error) {

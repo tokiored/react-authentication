@@ -20,16 +20,10 @@ function App() {
         <AuthProvider>
           <Routes>
             <Route path="/" element={<Layout />}>
-              <Route
-                index
-                element={
-                  <ProtectedRoute>
-                    <Dashboard />
-                  </ProtectedRoute>
-                }
-              />
+              <Route element={<ProtectedRoute />}>
+                <Route index element={<Dashboard />} />
+              </Route>
               <Route path="login" element={<Login />} />
-
               <Route path="*" element={<NotFound />} />
             </Route>
           </Routes>

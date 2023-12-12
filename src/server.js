@@ -12,7 +12,7 @@ createServer({
       email: 'admin@tokiored.com',
       password: 'p123',
       name: 'Ricky',
-      role: 'superadmin',
+      role: 'admin',
       role_id: '01',
     })
     server.create('user', {
@@ -20,7 +20,7 @@ createServer({
       email: 'super@tokiored.com',
       password: 'p123',
       name: 'Julian',
-      role: 'admin',
+      role: 'super',
       role_id: '02',
     }),
       server.create('user', {
@@ -73,7 +73,7 @@ createServer({
     // Passing the path directly will fail
     // - this.passthrough('/public/users.json')
     this.passthrough((request) => {
-      if (request.url === '/public/users.json') return true
+      if (request.url === '/users.json') return true
     })
   },
 })
