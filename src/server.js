@@ -20,7 +20,7 @@ createServer({
       email: 'super@tokiored.com',
       password: 'p123',
       name: 'Julian',
-      role: 'super',
+      role: 'superadmin',
       role_id: '02',
     }),
       server.create('user', {
