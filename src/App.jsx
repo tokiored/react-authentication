@@ -7,42 +7,31 @@ import ProtectedRoute from './auth/ProtectedRoute'
 /*
  * Page Components & Styles
  */
-import Login from './public/Login'
-import Navigation from './public/Navigation'
-import NotFound from './public/NotFound'
-import Dashboard from './private/Dashboard'
-import Profile from './private/Profile'
+import Layout from './components/Layout'
+import Login from './pages/Login'
+import Dashboard from './pages/Dashboard'
+import NotFound from './pages/NotFound'
 import './App.css'
 
 function App() {
   return (
     <>
-      <h1>Tokiored</h1>
-
       <Router>
         <AuthProvider>
-          <Navigation />
-
           <Routes>
-            <Route
-              index
-              path="/"
-              element={
-                <ProtectedRoute>
-                  <Dashboard />
-                </ProtectedRoute>
-              }
-            />
-            {/* <Route
-              path="/dashboard"
-              element={
-                <ProtectedRoute>
-                  <Dashboard />
-                </ProtectedRoute>
-              }
-            /> */}
-            <Route path="login" element={<Login />} />
-            <Route path="*" element={<NotFound />} />
+            <Route path="/" element={<Layout />}>
+              <Route
+                index
+                element={
+                  <ProtectedRoute>
+                    <Dashboard />
+                  </ProtectedRoute>
+                }
+              />
+              <Route path="login" element={<Login />} />
+
+              <Route path="*" element={<NotFound />} />
+            </Route>
           </Routes>
         </AuthProvider>
       </Router>

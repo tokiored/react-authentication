@@ -23,18 +23,15 @@ export default function Dashboard() {
   }, [])
 
   return (
-    <>
-      <h2>Dashboard (Protected)</h2>
-      <h3>
-        Hello {user.name}, your role is `{user.role}`. Welcome to your
-        dashboard.
-      </h3>
+    <div className="container">
+      <h1>Hello {user.name}, welcome to your dashboard.</h1>
+      <div className="label">Your role is: {user.role}</div>
 
       {users && users.length ? (
         <DashboardTable data={users} />
       ) : (
-        'Loading Users Table...'
+        <h3>Loading Users Table...</h3>
       )}
-    </>
+    </div>
   )
 }
