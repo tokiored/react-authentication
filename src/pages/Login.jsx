@@ -6,7 +6,7 @@ export default function Login() {
   const { token, user, onLogin } = useAuth()
   const location = useLocation()
 
-  const initiliseForm = { email: 'admin@tokiored.com', password: 'p123' }
+  const initiliseForm = { email: '', password: '' }
   const [loginFormData, setLoginFormData] = useState(initiliseForm)
   const [status, setStatus] = useState('idle')
   const [error, setError] = useState(null)
