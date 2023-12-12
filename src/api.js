@@ -1,9 +1,3 @@
-const fakeLogin = () =>
-  new Promise((resolve) => {
-    let token = '123456789'
-    setTimeout(() => resolve(token), 250)
-  })
-
 const login = async (creds) => {
   const res = await fetch('/api/login', {
     method: 'post',
@@ -22,4 +16,19 @@ const login = async (creds) => {
   return data
 }
 
-export { fakeLogin, login }
+const getUsers = async () => {
+  try {
+    // React router conflicts with file lookup
+    // json file should be in `/public` folder
+    // `import users from ./users.json` would be
+    // the correct way to use data fom a .json file
+    // this solution is for diginius test criteria  *only*
+    const res = await fetch('/public/users.json')
+    const data = await res.json()
+    return data
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+export { login, getUsers }

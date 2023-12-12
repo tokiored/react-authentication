@@ -1,26 +1,12 @@
 import { useState } from 'react'
-import useAuth from '../auth/hooks/useAuth'
 import { useLocation } from 'react-router-dom'
+import useAuth from '../auth/hooks/useAuth'
 
-// export default function Home() {
-//   const { token, onLogin } = useAuth()
-
-//   return (
-//     <>
-//       <h2>Login (Public)</h2>
-//       {!token && (
-//         <button type="button" onClick={onLogin}>
-//           Log In
-//         </button>
-//       )}
-//     </>
-//   )
-// }
 export default function Login() {
   const { token, onLogin } = useAuth()
   const location = useLocation()
 
-  const initiliseForm = { email: '', password: '' }
+  const initiliseForm = { email: 'admin@tokiored.com', password: 'p123' }
   const [loginFormData, setLoginFormData] = useState(initiliseForm)
   const [status, setStatus] = useState('idle')
   const [error, setError] = useState(null)
@@ -32,11 +18,8 @@ export default function Login() {
       [name]: value,
     }))
   }
-
+  // TODO: Handle Form Validation
   const handleSubmit = async (e) => {
-    // TODO: Handle Form Validation
-    // https://leanylabs.com/blog/form-validation-in-react/
-
     e.preventDefault()
     setStatus('submitting')
 
@@ -54,7 +37,6 @@ export default function Login() {
       )}
       <h1>Sign in to your account</h1>
       {error?.message && <h3 className="login-error">{error.message}</h3>}
-
       <form onSubmit={handleSubmit} className="login-form">
         <input
           name="email"

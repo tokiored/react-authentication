@@ -1,4 +1,5 @@
 import { createServer, Model, Response } from 'miragejs'
+// import usersData from './users.json'
 
 createServer({
   models: {
@@ -48,12 +49,31 @@ createServer({
           { message: 'No user with those credentials found!' }
         )
       }
-      // Remove password from return
+      // Remove all private data based on `role`
+      // -- only admin and a superuser can view `email field`
+      // -- only admin can view `ip_address`
+      if (foundUser.role === 'user') {
+        foundUser.email = undefined
+        foundUser.ip_address = undefined
+      } else if (foundUser.role === 'superadmin') {
+        foundUser.ip_address = undefined
+      }
+      // Remove password from return for all roles
       foundUser.password = undefined
       return {
-        user: foundUser.name,
-        token: "Enjoy your pizza, here's your tokens.",
+        user: foundUser,
+        token: 'EnjoyYourPizzaSlice.',
       }
+    })
+
+    // We need to whitelist the request to the local
+    // `users.json` file
+    // Do a runtime check and return true so Mirage
+    // will allow a request to the actual network layer.
+    // Passing the path directly will fail
+    // - this.passthrough('/public/users.json')
+    this.passthrough((request) => {
+      if (request.url === '/public/users.json') return true
     })
   },
 })
