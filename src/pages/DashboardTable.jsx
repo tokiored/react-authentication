@@ -8,7 +8,6 @@ export default function DashboardTable({ data }) {
   const { user } = useAuth()
 
   // Remove columns based on role
-  const role = 'superadmin'
   const initialiseTableState = () => {
     if (user.role === 'user') {
       return {
@@ -16,10 +15,10 @@ export default function DashboardTable({ data }) {
         ip_address: false,
       }
     }
-    if (role === 'admin') {
+    if (user.role === 'admin') {
       return {}
     }
-    if (role === 'superadmin') return { ip_address: false }
+    if (user.role === 'superadmin') return { ip_address: false }
   }
 
   const columns = useMemo(
