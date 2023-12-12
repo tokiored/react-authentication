@@ -14,13 +14,12 @@ const AuthProvider = ({ children }) => {
     console.log('Auth Proivde useEffect')
     // Get user from localStorgage
     const localUser = localStorage.getItem('user')
+    const localToken = localStorage.getItem('token')
     const isAuthenticated = JSON.parse(localUser)
 
-    // TODO: Validate token/user with the server
     if (isAuthenticated) {
-      // TODO: token is required for all `useAuth` hooks imports
-      // combine the `user` and `token` on authectication
-      const localToken = localStorage.getItem('token')
+      // TODO: token is required for all `useAuth` hooks
+      // Combine the `user` and `token` data
       setToken(localToken)
       setUser(isAuthenticated)
     }
@@ -31,9 +30,9 @@ const AuthProvider = ({ children }) => {
     const data = await login(creds)
 
     // Update state and save cookie...nom nom
-    setToken(data.token)
     setUser(data.user)
-    localStorage.setItem('token', token)
+    setToken(data.token)
+    localStorage.setItem('token', data.token)
     localStorage.setItem('user', JSON.stringify(data.user))
 
     // Handle smart redirect
@@ -44,8 +43,8 @@ const AuthProvider = ({ children }) => {
 
   const handleLogout = () => {
     // Clear state and local storage
-    setToken(null)
     setUser(null)
+    setToken(null)
     localStorage.removeItem('user')
   }
 

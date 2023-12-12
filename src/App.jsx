@@ -7,7 +7,7 @@ import ProtectedRoute from './auth/ProtectedRoute'
 /*
  * Page Components & Styles
  */
-import Home from './public/Home'
+import Login from './public/Login'
 import Navigation from './public/Navigation'
 import NotFound from './public/NotFound'
 import Dashboard from './private/Dashboard'
@@ -22,25 +22,26 @@ function App() {
       <Router>
         <AuthProvider>
           <Navigation />
+
           <Routes>
-            <Route index element={<Home />} />
-            <Route path="Home" element={<Home />} />
             <Route
-              path="Profile"
-              element={
-                <ProtectedRoute>
-                  <Profile />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="dashboard"
+              index
+              path="/"
               element={
                 <ProtectedRoute>
                   <Dashboard />
                 </ProtectedRoute>
               }
             />
+            {/* <Route
+              path="/dashboard"
+              element={
+                <ProtectedRoute>
+                  <Dashboard />
+                </ProtectedRoute>
+              }
+            /> */}
+            <Route path="login" element={<Login />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </AuthProvider>

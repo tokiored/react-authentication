@@ -5,17 +5,17 @@ export default function Navigation() {
 
   return (
     <header>
-      <nav>
-        <NavLink to="/home">Home</NavLink>
-        <NavLink to="/Profile">Profile</NavLink>
-        <NavLink to="/dashboard">Dashboard</NavLink>
-
-        {token && (
+      {token && (
+        <nav>
+          {/* <NavLink to="/Profile">Profile</NavLink> */}
+          {/* <NavLink to="/Login">Home</NavLink> */}
+          {/* <NavLink to="/dashboard">Dashboard</NavLink> */}
+          <NavLink to="/">Go to your Dashboard</NavLink>
           <button type="button" onClick={onLogout}>
             Log Out
           </button>
-        )}
-      </nav>
+        </nav>
+      )}
     </header>
   )
 }

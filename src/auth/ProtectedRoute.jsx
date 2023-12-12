@@ -9,7 +9,7 @@ const ProtectedRoute = ({ children }) => {
    * add protected route to state
    */
   if (!token) {
-    return <Navigate to="/home" replace state={{ from: location }} />
+    return <Navigate to="/login" replace state={{ from: location }} />
   }
 
   return children
